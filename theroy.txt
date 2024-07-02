@@ -1,0 +1,10 @@
+##  npm i nodemon --save-dev   //means use only in development not in production
+
+//NODE_ENV  node envirnment variable
+
+//controllers forlders for logic 
+//routes for endpoint
+
+//data seeder -> add multiple product to database
+
+Middleware is a function that run before each request
