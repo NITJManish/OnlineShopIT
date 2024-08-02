@@ -1,43 +1,48 @@
-import express from 'express'
-const app=express();
-import dotenv from 'dotenv'
-import { connectDatabase } from './config/dbConnect.js';
-import errorsMiddleware from './middlewares/errors.js';
+import express from "express";
+const app = express();
+import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
+import { connectDatabase } from "./config/dbConnect.js";
+import errorMiddleware from "./middlewares/errors.js";
 
-//handle uncaught exception
-process.on("uncaughtException",(err)=>{
-    console.log(`ERROR ${err}`);
-     console.log("Shutting down server due to uncaught exception")
-        process.exit(1);
+// Handle Uncaught exceptions
+process.on("uncaughtException", (err) => {
+  console.log(`ERROR: ${err}`);
+  console.log("Shutting down due to uncaught expection");
+  process.exit(1);
 });
 
+dotenv.config({ path: "backend/config/config.env" });
 
-
-dotenv.config({ path:"backend/config/config.env" });
-
-//connection to database
+// Connecting to database
 connectDatabase();
 
 app.use(express.json());
+app.use(cookieParser());
 
+// Import all routes
+import productRoutes from "./routes/products.js";
+import authRoutes from "./routes/auth.js";
+import orderRoutes from "./routes/order.js";
 
-//import all routes
-import productRoutes from './routes/product.js'
+app.use("/api/v1", productRoutes);
+app.use("/api/v1", authRoutes);
+app.use("/api/v1", orderRoutes);
 
-app.use("/api",productRoutes);
+// Using error middleware
+app.use(errorMiddleware);
 
-//using error middleware
-app.use(errorsMiddleware);
+const server = app.listen(process.env.PORT, () => {
+  console.log(
+    `Server started on PORT: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`
+  );
+});
 
-const server=app.listen(process.env.PORT,()=>{
-    console.log(`server started on port ${process.env.PORT} in ${process.env.NODE_ENV} mode.`);
-})
-
-//Handle Unhandle promise rejections
-process.on("unhandledRejection",(err)=>{
-     console.log(`ERROR ${err}`);
-     console.log("Shutting down server due to unhandled promise rejection")
-     server.close(()=>{
-        process.exit(1);
-     });
+//Handle Unhandled Promise rejections
+process.on("unhandledRejection", (err) => {
+  console.log(`ERROR: ${err}`);
+  console.log("Shutting down server due to Unhandled Promise Rejection");
+  server.close(() => {
+    process.exit(1);
+  });
 });

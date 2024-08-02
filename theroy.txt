@@ -8,3 +8,16 @@
 //data seeder -> add multiple product to database
 
 Middleware is a function that run before each request
+
+
+
+
+
+/*var transport = nodemailer.createTransport({
+  host: "sandbox.smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "7fcf92c54a7b65",
+    pass: "********4ef7"
+  }
+});*/
