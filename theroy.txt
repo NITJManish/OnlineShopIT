@@ -21,3 +21,6 @@ Middleware is a function that run before each request
     pass: "********4ef7"
   }
 });*/
+
+//stripe configuration
+/*stripe listen --events checkout.session.completed --forward-to localhost:4000/api/v1/payment/webhook*/

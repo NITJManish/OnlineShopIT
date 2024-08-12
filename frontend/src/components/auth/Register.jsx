@@ -102,8 +102,14 @@ const Register = () => {
             >
               {isLoading ? "Creating..." : "REGISTER"}
             </button>
+            <div className="my-3">
+              <a href="/login" className="float-end">
+                Already register? Login
+              </a>
+            </div>
           </form>
         </div>
+       
       </div>
     </>
   );

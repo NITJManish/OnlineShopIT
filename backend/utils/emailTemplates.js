@@ -448,10 +448,10 @@ export const getResetPasswordTemplate = (username, resetUrl) => `
             <tr>
               <td class="email-masthead">
                 <a
-                  href="https://ramekbalShop.com"
+                  href="https://shopit.com"
                   class="f-fallback email-masthead_name"
                 >
-                  RamEkbalShop
+                  ShopIT
                 </a>
               </td>
             </tr>
@@ -556,7 +556,7 @@ export const getResetPasswordTemplate = (username, resetUrl) => `
                   <tr>
                     <td class="content-cell" align="center">
                       <p class="f-fallback sub align-center">
-                        RamEkbalShop
+                        ShopIT
                         <br />1234 Street Rd. <br />Suite 1234
                       </p>
                     </td>
