@@ -20,30 +20,45 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar row">
-      <div className="col-2 col-md-3 ps-5">
-        <div className="navbar-brand">
-          <a href="/">
-            <img src="/images/shopit_logo.png" alt="ShopIT Logo" />
-          </a>
-        </div>
-      </div>
+    <nav className="navbar navbar-expand-md navbar-light">
+  <div className="container-fluid">
+    {/* Logo Section */}
+    <Link to="/" className="navbar-brand ps-2 ps-md-5">
+      <img src="/images/shopit_logo.png" alt="ShopIT Logo" />
+    </Link>
+
+    {/* Toggle button for mobile view */}
+    <button
+      className="navbar-toggler bg-light"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarMenu"
+      aria-controls="navbarMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span className="navbar-toggler-icon"></span>
+    </button>
+
+    {/* Collapsible content */}
+    <div className="collapse navbar-collapse" id="navbarMenu">
+      {/* Centered Search Bar */}
       <div className="col-12 col-md-6 mt-2 mt-md-0">
         <Search />
       </div>
-      <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
-        <a href="/cart" style={{ textDecoration: "none" }}>
-          <span id="cart" className="ms-3">
-            {" "}
-            Cart{" "}
-          </span>
-          <span className="ms-1" id="cart_count">
-            {cartItems?.length}
-          </span>
-        </a>
 
+      {/* Cart and User Section */}
+      <ul className="navbar-nav ms-auto">
+        <li className="nav-item">
+          <Link to="/cart" className="nav-link" style={{ textDecoration: "none" }}>
+            <span id="cart" className="ms-3 ">Cart</span>
+            <span className="ms-1" id="cart_count">{cartItems?.length}</span>
+          </Link>
+        </li>
+
+        {/* User Dropdown */}
         {user ? (
-          <div className="ms-4 dropdown">
+          <li className="nav-item dropdown">
             <button
               className="btn dropdown-toggle text-white"
               type="button"
@@ -62,48 +77,46 @@ const Header = () => {
                   className="rounded-circle"
                 />
               </figure>
-              <span>{user?.name}</span>
+              <span className="ms-2">{user?.name}</span>
             </button>
-            <div
-              className="dropdown-menu w-100"
-              aria-labelledby="dropDownMenuButton"
-            >
+            <ul className="dropdown-menu" aria-labelledby="dropDownMenuButton">
               {user?.role === "admin" && (
-                <Link className="dropdown-item" to="/admin/dashboard">
-                  {" "}
-                  Dashboard{" "}
-                </Link>
+                <li>
+                  <Link className="dropdown-item" to="/admin/dashboard">Dashboard</Link>
+                </li>
               )}
-
-              <Link className="dropdown-item" to="/me/orders">
-                {" "}
-                Orders{" "}
-              </Link>
-
-              <Link className="dropdown-item" to="/me/profile">
-                {" "}
-                Profile{" "}
-              </Link>
-
-              <Link
-                className="dropdown-item text-danger"
-                to="/"
-                onClick={logoutHandler}
-              >
-                Logout{" "}
-              </Link>
-            </div>
-          </div>
+              <li>
+                <Link className="dropdown-item" to="/me/orders">Orders</Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/me/profile">Profile</Link>
+              </li>
+              <li>
+                <Link
+                  className="dropdown-item text-danger"
+                  to="/"
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </Link>
+              </li>
+            </ul>
+          </li>
         ) : (
           !isLoading && (
-            <Link to="/login" className="btn ms-4" id="login_btn">
-              {" "}
-              Login{" "}
-            </Link>
+            <li className="nav-item">
+              <Link to="/login" className="btn ms-4" id="login_btn">
+                Login
+              </Link>
+            </li>
           )
         )}
-      </div>
-    </nav>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
   );
 };
 

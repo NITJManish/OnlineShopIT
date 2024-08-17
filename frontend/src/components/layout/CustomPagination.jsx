@@ -28,8 +28,10 @@ const CustomPagination = ({ resPerPage, filteredProductsCount }) => {
   };
 
   return (
-    <div className="d-flex justify-content-center my-5">
-      {filteredProductsCount > resPerPage && (
+    <div className="container my-5">
+  <div className="row justify-content-center">
+    {filteredProductsCount > resPerPage && (
+      <div className="col-12 col-sm-8 col-md-6 col-lg-4">
         <Pagination
           activePage={currentPage}
           itemsCountPerPage={resPerPage}
@@ -42,8 +44,10 @@ const CustomPagination = ({ resPerPage, filteredProductsCount }) => {
           itemClass="page-item"
           linkClass="page-link"
         />
-      )}
-    </div>
+      </div>
+    )}
+  </div>
+</div>
   );
 };
 
