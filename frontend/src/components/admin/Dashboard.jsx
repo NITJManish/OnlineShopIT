@@ -5,10 +5,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import SalesChart from "../charts/SalesChart";
+
 import { useLazyGetDashboardSalesQuery } from "../../redux/api/orderApi";
 import { toast } from "react-hot-toast";
 import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
+import BarChart from "../charts/BarChart";
+import AgGridTable from "./AgGridTable";
 
 const Dashboard = () => {
   const [startDate, setStartDate] = useState(new Date().setDate(1));
@@ -101,8 +104,12 @@ const Dashboard = () => {
       </div>
 
       <SalesChart salesData={data?.sales} />
+      {/* <BarChart salesData={data?.sales} />
+      <AgGridTable/> */}
+
 
       <div className="mb-5"></div>
+
     </AdminLayout>
   );
 };

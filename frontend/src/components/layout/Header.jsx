@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <nav className="navbar row">
-      <div className="col-12 col-md-3 ps-5">
+      <div className="col-2 col-md-3 ps-5">
         <div className="navbar-brand">
           <a href="/">
             <img src="/images/shopit_logo.png" alt="ShopIT Logo" />

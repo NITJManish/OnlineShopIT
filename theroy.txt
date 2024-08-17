@@ -24,3 +24,8 @@ Middleware is a function that run before each request
 
 //stripe configuration
 /*stripe listen --events checkout.session.completed --forward-to localhost:4000/api/v1/payment/webhook*/
+
+
+//mongodb aggregation:  https://www.mongodb.com/docs/manual/aggregation/
+
+//groupe by date formate:  https://www.mongodb.com/docs/upcoming/reference/operator/aggregation/dateToString/#:~:text=The%20%24dateToString%20expression%20has%20the,MongoDB%20deployments%20in%20the%20cloud

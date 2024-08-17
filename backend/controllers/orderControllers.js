@@ -194,7 +194,6 @@ export const getSales = catchAsyncErrors(async (req, res, next) => {
 
   startDate.setUTCHours(0, 0, 0, 0);
   endDate.setUTCHours(23, 59, 59, 999);
-
   const { salesData, totalSales, totalNumOrders } = await getSalesData(
     startDate,
     endDate
